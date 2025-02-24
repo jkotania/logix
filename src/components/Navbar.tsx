@@ -1,11 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { name: "O nas", href: "/about" },
@@ -14,7 +23,13 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-full bg-background backdrop-blur-md fixed top-0 z-50">
+    <nav
+      className={`w-full fixed top-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background backdrop-blur-md shadow-lg"
+          : "backdrop-blur-sm"
+      }`}
+    >
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
@@ -73,7 +88,11 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-x-0 top-24 bg-background shadow-lg">
+          <div
+            className={`md:hidden fixed inset-x-0 top-20 ${
+              isScrolled ? "bg-background" : "bg-transparent"
+            } shadow-lg`}
+          >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => (
                 <Link

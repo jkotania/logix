@@ -28,10 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${inter.variable} antialiased bg-black bg-gradient-to-br from-black via-stone-950 to-stone-900/80`}
+        className={`${poppins.variable} ${inter.variable} antialiased bg-black flex flex-col min-h-screen`}
       >
+        <div className="fixed inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-stone-950/80 to-stone-900/60" />
+        </div>
         <Navbar />
-        {children}
+        <main className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>
