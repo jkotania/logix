@@ -133,20 +133,20 @@ export default function Onboarding() {
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => handleSelect(option)}
-            className="group p-6 rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-left"
+            className="group p-4 sm:p-6 rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-left"
           >
             <motion.div 
-              className="text-3xl mb-3"
+              className="text-2xl sm:text-3xl mb-2 sm:mb-3"
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
               {option.icon}
             </motion.div>
-            <h2 className="text-xl font-semibold text-white mb-2">
+            <h2 className="text-lg sm:text-xl font-semibold text-white mb-1 sm:mb-2">
               {option.label}
             </h2>
             <motion.div 
-              className="text-blue-500 group-hover:text-blue-400"
+              className="text-blue-500 group-hover:text-blue-400 text-sm sm:text-base"
               initial={{ x: 0 }}
               whileHover={{ x: 5 }}
             >
@@ -159,12 +159,12 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative">
+    <div className="min-h-screen flex items-center justify-center relative pt-20 sm:pt-0"> {/* Dodany padding top na mobile */}
       {/* Usuwamy Link powrotu gdy jesteśmy na ostatnim kroku */}
       {currentStep !== 'summary' && (
         <Link 
           href="/" 
-          className="absolute top-8 left-8 text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+          className="absolute top-4 sm:top-8 left-4 sm:left-8 text-gray-400 hover:text-white transition-colors flex items-center gap-2"
         >
           <motion.div
             whileHover={{ x: -5 }}
@@ -173,7 +173,7 @@ export default function Onboarding() {
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              className="h-5 w-5" 
+              className="h-4 w-4 sm:h-5 sm:w-5" 
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="currentColor"
@@ -185,7 +185,7 @@ export default function Onboarding() {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18" 
               />
             </svg>
-            <span>Powrót</span>
+            <span className="text-sm sm:text-base">Powrót</span>
           </motion.div>
         </Link>
       )}
@@ -197,7 +197,7 @@ export default function Onboarding() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
               {steps[currentStep].title}
             </h1>
             <div className="flex justify-center gap-2 mb-8">

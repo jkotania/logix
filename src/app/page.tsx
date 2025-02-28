@@ -119,7 +119,14 @@ export default function Home() {
           >
             <div className="grid grid-rows-3 gap-4 h-full">
               {/* Karta 1 */}
-              <div className="rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition-all">
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                whileHover="hover"
+                viewport={{ once: true }}
+                className="rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 p-4"
+              >
                 <div className="h-8 w-8 text-white mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -154,10 +161,17 @@ export default function Home() {
                 >
                   Dowiedz się więcej
                 </a>
-              </div>
+              </motion.div>
 
               {/* Karta 2 */}
-              <div className="rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition-all">
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                whileHover="hover"
+                viewport={{ once: true }}
+                className="rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 p-4"
+              >
                 <div className="h-8 w-8 text-white mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -192,10 +206,17 @@ export default function Home() {
                 >
                   Dowiedz się więcej
                 </a>
-              </div>
+              </motion.div>
 
               {/* Karta 3 */}
-              <div                   className="rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition-all">
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                whileHover="hover"
+                viewport={{ once: true }}
+                className="rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 p-4"
+              >
                 <div className="h-8 w-8 text-white mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +251,7 @@ export default function Home() {
                 >
                   Dowiedz się więcej
                 </a>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </main>
