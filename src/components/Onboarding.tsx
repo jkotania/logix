@@ -46,12 +46,19 @@ const steps = {
   }
 };
 
+interface Selection {
+  type?: { id: string; label: string; icon: string };
+  project?: { id: string; label: string; icon: string };
+  availability?: { id: string; label: string; icon: string };
+  time?: { id: string; label: string; icon: string };
+}
+
 export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState('type');
-  const [selections, setSelections] = useState({});
+  const [selections, setSelections] = useState<Selection>({});
   const [direction, setDirection] = useState(0);
 
-  const handleSelect = (option) => {
+  const handleSelect = (option: { id: string; label: string; icon: string }) => {
     setDirection(1);
     setSelections(prev => ({ ...prev, [currentStep]: option }));
     
