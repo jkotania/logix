@@ -1,3 +1,6 @@
+"use client";
+import { motion } from 'framer-motion';
+
 export default function MobileDevelopment() {
   const features = [
     {
@@ -25,28 +28,68 @@ export default function MobileDevelopment() {
     "REST API", "GraphQL", "Push Notifications", "Google Maps", "Payment Gates"
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <div className="min-h-[calc(100vh+3rem+6rem)] pt-16 pb-12 flex items-center justify-center">
+    <div className="min-h-screen pt-24 sm:pt-16 flex items-center justify-center">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 p-8 shadow-2xl">
-          <h1 className="text-4xl font-bold text-white mb-8">Mobile Development</h1>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 p-4 sm:p-6 shadow-2xl"
+        >
+          <motion.h1 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-2xl sm:text-4xl font-bold text-white mb-4 sm:mb-6"
+          >
+            Mobile Development
+          </motion.h1>
           
-          <div className="space-y-12">
-            <section className="">
-              <p className="text-gray-300 text-lg">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-6 sm:space-y-8"
+          >
+            <section>
+              <p className="text-gray-300 text-sm sm:text-lg">
                 Tworzymy wydajne i intuicyjne aplikacje mobilne, 
                 które spełniają najwyższe standardy użyteczności i designu.
                 Nasze rozwiązania są skrojone pod potrzeby Twojego biznesu.
               </p>
             </section>
 
-            <section className="grid md:grid-cols-3 gap-8">
+            <section className="grid md:grid-cols-3 gap-4 sm:gap-6">
               {features.map((feature, index) => (
-                <div key={index} className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-lg p-8 hover:bg-white/10 transition-all">
-                  <div className="text-4xl mb-12 text-center">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold text-white mb-4 text-center">{feature.title}</h3>
-                  <p className="text-gray-300 mb-6 text-center">{feature.description}</p>
-                  <ul className="text-gray-300 space-y-2">
+                <motion.div 
+                  key={index} 
+                  variants={itemVariants}
+                  className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-lg p-4 sm:p-6 hover:bg-white/10 transition-all"
+                >
+                  <div className="text-2xl sm:text-4xl mb-6 sm:mb-8 text-center">{feature.icon}</div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-4 text-center">{feature.title}</h3>
+                  <p className="text-gray-300 mb-4 sm:mb-6 text-center text-sm sm:text-base">{feature.description}</p>
+                  <ul className="text-gray-300 space-y-1 sm:space-y-2 text-sm sm:text-base">
                     {feature.details.map((detail, i) => (
                       <li key={i} className="flex items-center">
                         <span className="mr-2">•</span>
@@ -54,27 +97,26 @@ export default function MobileDevelopment() {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               ))}
             </section>
 
-            <section className="mt-12">
-              <h2 className="text-2xl font-semibold text-white mb-6 text-center">Używane technologie</h2>
-              <div className="flex flex-wrap justify-center gap-4">
+            <section>
+              <h2 className="text-xl sm:text-2xl font-semibold text-white mb-4 sm:mb-6 text-center">Używane technologie</h2>
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
                 {technologies.map((tech, index) => (
-                  <span 
+                  <motion.span 
                     key={index}
-                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-gray-300 hover:bg-white/10 transition-all"
+                    variants={itemVariants}
+                    className="px-3 py-1 sm:px-4 sm:py-2 bg-white/5 border border-white/10 rounded-full text-gray-300 hover:bg-white/10 transition-all text-sm sm:text-base"
                   >
                     {tech}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </section>
-
-            
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

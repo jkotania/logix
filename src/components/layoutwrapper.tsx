@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import ParticlesComponent from './Particles'
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -11,6 +12,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   return (
     <>
       {!isStartPage && <Navbar />}
+      {!isStartPage && <ParticlesComponent />}
       {children}
       {!isStartPage && <Footer />}
     </>

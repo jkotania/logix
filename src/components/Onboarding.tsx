@@ -1,11 +1,21 @@
-// src/components/Onboarding.tsx
 "use client";
 
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const steps = {
+interface StepOption {
+  id: string;
+  label: string;
+  icon: string;
+}
+
+interface Step {
+  title: string;
+  options: StepOption[];
+}
+
+const steps: Record<'type' | 'project' | 'availability' | 'time' | 'summary', Step> = {
   type: {
     title: "Jak możemy Ci pomóc?",
     options: [
@@ -46,6 +56,7 @@ const steps = {
   }
 };
 
+
 interface Selection {
   type?: { id: string; label: string; icon: string };
   project?: { id: string; label: string; icon: string };
@@ -54,7 +65,7 @@ interface Selection {
 }
 
 export default function Onboarding() {
-  const [currentStep, setCurrentStep] = useState('type');
+  const [currentStep, setCurrentStep] = useState<keyof typeof steps>('type');
   const [selections, setSelections] = useState<Selection>({});
   const [direction, setDirection] = useState(0);
 

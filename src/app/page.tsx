@@ -1,5 +1,4 @@
 "use client";
-import ParticlesComponent from "@/components/Particles";
 import Link from "next/link";
 import LearnMoreButton from "@/components/LearnMoreButton";
 import { motion } from "framer-motion";
@@ -43,7 +42,7 @@ export default function Home() {
 
   return (
     <>
-      <ParticlesComponent />
+
       <div className="grid grid-rows-[80px_1fr] min-h-screen">
         <nav className="w-full"></nav>
 
