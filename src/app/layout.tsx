@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import LayoutWrapper from '@/components/layoutwrapper';
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -33,9 +32,9 @@ export default function RootLayout({
         <div className="fixed inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-black via-stone-950/80 to-stone-900/60" />
         </div>
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LayoutWrapper>
+          <main className="flex-1">{children}</main>
+        </LayoutWrapper>
       </body>
     </html>
   );

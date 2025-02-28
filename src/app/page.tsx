@@ -1,8 +1,46 @@
+"use client";
 import ParticlesComponent from "@/components/Particles";
 import Link from "next/link";
 import LearnMoreButton from "@/components/LearnMoreButton";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+    hover: {
+      scale: 1.02,
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
   return (
     <>
       <ParticlesComponent />
@@ -10,59 +48,72 @@ export default function Home() {
         <nav className="w-full"></nav>
 
         <main className="w-full">
-          {/* Hero section (full screen) */}
           <div className="relative w-full h-[calc(100vh-80px)] flex flex-col items-center justify-center text-center px-6">
-            {/* Tło karty */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="max-w-6xl w-full mx-4">
-                <div className="relative rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 p-8 shadow-2xl transform transition-all duration-300">
-                  {/* Zawartość karty */}
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="relative rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 p-8 shadow-2xl"
+                >
                   <div className="space-y-12">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-400">
+                    <motion.h1
+                      variants={itemVariants}
+                      className="text-4xl md:text-6xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-400"
+                    >
                       Nowoczesne Rozwiązania
-                    </h1>
+                    </motion.h1>
 
-                    <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    <motion.p
+                      variants={itemVariants}
+                      className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
+                    >
                       Tworzymy przyszłość poprzez innowacyjne technologie i
                       kreatywne podejście
-                    </p>
+                    </motion.p>
 
-                    <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-                      <Link
-                        href="/start"
-                        className="px-8 py-4 rounded-full bg-white backdrop-blur-sm border border-white/20 text-black hover:bg-white/30 transition-all flex items-center justify-center gap-2"
-                      >
-                        <span>Rozpocznij</span>
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                    <motion.div
+                      variants={itemVariants}
+                      className="flex flex-col sm:flex-row justify-center gap-4 mt-8"
+                    >
+                      <Link href="/start">
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="px-8 py-4 rounded-full bg-white backdrop-blur-sm border border-white/20 text-black hover:bg-white/30 transition-all flex items-center justify-center gap-2"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
+                          <span>Rozpocznij</span>
+                          <motion.svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            initial={{ x: 0 }}
+                            whileHover={{ x: 5 }}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </motion.svg>
+                        </motion.div>
                       </Link>
-
                       <LearnMoreButton />
-                    </div>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </div>
-            </div>
-
-            {/* Tło gradientowe */}
-            <div className="absolute inset-0 overflow-hidden -z-10">
-              <div className="absolute inset-0 bg-gradient-radial from-stone-800/20 to-black" />
             </div>
           </div>
 
-          {/* Cards section */}
-          <div
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             id="cards-section"
             className="min-h-[calc(100vh-80px-48px)] max-w-6xl mx-auto px-4 py-4"
           >
@@ -144,7 +195,7 @@ export default function Home() {
               </div>
 
               {/* Karta 3 */}
-              <div className="rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition-all">
+              <div                   className="rounded-xl backdrop-blur-sm bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition-all">
                 <div className="h-8 w-8 text-white mb-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -181,7 +232,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         </main>
       </div>
     </>

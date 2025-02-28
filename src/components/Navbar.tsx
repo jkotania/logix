@@ -27,7 +27,7 @@ const Navbar = () => {
       className={`w-full fixed top-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background backdrop-blur-md shadow-lg"
-          : "backdrop-blur-sm"
+          : "backdrop-blur"
       }`}
     >
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,9 +89,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div
-            className={`md:hidden fixed inset-x-0 top-20 ${
-              isScrolled ? "bg-background" : "bg-transparent"
-            } shadow-lg`}
+            className={`md:hidden fixed inset-x-0 top-20 bg-black/95 backdrop-blur-md shadow-lg`}
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => (
