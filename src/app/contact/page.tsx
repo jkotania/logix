@@ -4,9 +4,11 @@ import { motion } from 'framer-motion';
 import { FaLinkedin, FaFacebook, FaGithub } from 'react-icons/fa';
 
 export default function Contact() {
-  const [formData] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    subject: '',
     message: ''
   });
 
